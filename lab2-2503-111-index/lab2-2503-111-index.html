@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书商城 - 实验2</title>
+    <!-- 修正CSS路径：匹配实际文件名+目录 -->
+    <link rel="stylesheet" href="css/lab2-2503-111-index.css">
+</head>
+<body>
+    <!-- 头部区域：固定定位 + 浮动布局（满足实验2.1） -->
+    <header class="header">
+        <div class="logo">
+            <!-- 修正图片路径：指向img目录 -->
+            <img src="..\lab2-2503-111-index\image\logo.jpg" alt="网站Logo">
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">图书分类</a></li>
+                <li><a href="#">新书上市</a></li>
+                <li><a href="#">热门推荐</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主体内容区：浮动三栏布局（满足实验2.2） -->
+    <main class="main">
+        <!-- 左侧栏：图书分类（相对定位，满足实验2.3） -->
+        <aside class="left-sidebar">
+            <h3>图书分类</h3>
+            <ul class="category-list">
+                <li><a href="#">文学小说</a></li>
+                <li><a href="#">科技编程</a></li>
+                <li><a href="#">历史人文</a></li>
+                <li><a href="#">经济管理</a></li>
+                <li><a href="#">艺术设计</a></li>
+            </ul>
+        </aside>
+
+        <!-- 中间栏：图书展示区（满足实验2.3） -->
+        <section class="center-content">
+            <!-- 图书展示：父相子绝 + 悬停效果（满足实验5） -->
+            <div class="book-show">
+                <h3>精选图书</h3>
+                <!-- 补全parent-relative类，确保所有图书项支持悬停 -->
+                <div class="book-item parent-relative">
+                    <img src="..\lab2-2503-111-index\image\computer.jpg" alt="图书1">
+                    <p>深入理解计算机系统</p>
+                    <!-- 绝对定位的悬停内容 -->
+                    <div class="hover-info child-absolute">
+                        <p>售价：¥99.00</p>
+                        <p>作者：Bryant</p>
+                        <button>立即购买</button>
+                    </div>
+                </div>
+                <div class="book-item parent-relative">
+                    <img src="..\lab2-2503-111-index\image\javascript.jpg" alt="图书2">
+                    <p>JavaScript高级程序设计</p>
+                    <div class="hover-info child-absolute">
+                        <p>售价：¥89.00</p>
+                        <p>作者：Nicholas C. Zakas</p>
+                        <button>立即购买</button>
+                    </div>
+                </div>
+                <div class="book-item parent-relative">
+                    <img src="..\lab2-2503-111-index\image\python.jpg" alt="图书3">
+                    <p>Python编程从入门到实践</p>
+                    <div class="hover-info child-absolute">
+                        <p>售价：¥79.00</p>
+                        <p>作者：Eric Matthes</p>
+                        <button>立即购买</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 热门推荐：浮动排列（满足实验3） -->
+            <div class="hot-recommend">
+                <h3>热门推荐</h3>
+                <div class="hot-item">🔥 三体全集</div>
+                <div class="hot-item">🔥 活着</div>
+                <div class="hot-item">🔥 围城</div>
+                <div class="hot-item">🔥 红楼梦</div>
+            </div>
+
+            <!-- 新书上市：Table布局（满足实验2.3） -->
+            <div class="new-books">
+                <h3>新书上市</h3>
+                <table>
+                    <tr>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>价格</th>
+                    </tr>
+                    <tr>
+                        <td>AI时代的编程思维</td>
+                        <td>张三</td>
+                        <td>¥59.00</td>
+                    </tr>
+                    <tr>
+                        <td>Web前端开发实战</td>
+                        <td>李四</td>
+                        <td>¥49.00</td>
+                    </tr>
+                    <tr>
+                        <td>大数据分析入门</td>
+                        <td>王五</td>
+                        <td>¥69.00</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 右侧栏：促销信息（固定定位，满足实验2.3） -->
+        <aside class="right-sidebar">
+            <h3>促销信息</h3>
+            <div class="ad">
+                <p>🎉 全场满100减20！</p>
+                <p>📚 买二送一活动进行中！</p>
+                <p>⏰ 限时优惠：今日截止！</p>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 清除浮动（解决布局塌陷） -->
+    <div class="clearfix"></div>
+</body>
+</html>
