@@ -1,0 +1,502 @@
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+body {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 头部 */
+.header {
+    background-color: #2c3e50;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+.logo img {
+    height: 50px;
+}
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+/* ✅ 3D过渡动画增强 - 导航菜单项 */
+.nav-link {
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3498db;
+    transition: width 0.4s ease;
+    transform: translateZ(-1px);
+}
+.nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px) translateZ(5px);
+    color: #3498db;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* 布局 */
+.main {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+.left-sidebar {
+    width: 15%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.center-content {
+    width: 65%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.right-sidebar {
+    width: 20%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 分类 / 推荐 */
+.category-list, .hot-recommend {
+    list-style: none;
+    margin-top: 10px;
+}
+.category-list li, .hot-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+.category-list a {
+    text-decoration: none;
+    color: #333;
+}
+.book-show, .hot-recommend, .new-books {
+    margin-top: 20px;
+}
+.new-books table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.new-books th, .new-books td {
+    border: 1px solid #eee;
+    padding: 8px;
+    text-align: center;
+}
+.ad {
+    margin-top: 10px;
+    line-height: 1.8;
+    color: #e67e22;
+}
+
+/* ✅ 1. 3D翻转图书卡片 */
+.book-card {
+    display: inline-block;
+    margin: 20px;
+    perspective: 1000px; /* 3D透视效果 */
+}
+.book-card-inner {
+    width: 150px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+.book-card:hover .book-card-inner {
+    transform: rotateY(180deg); /* 180度翻转 */
+}
+.book-card-front, .book-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 隐藏背面 */
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.book-card-front {
+    background: white;
+}
+.book-card-front img {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+.book-card-front p {
+    font-size: 14px;
+    text-align: center;
+}
+.book-card-back {
+    background: #3498db;
+    color: white;
+    transform: rotateY(180deg); /* 初始翻转隐藏 */
+    text-align: center;
+    line-height: 1.5;
+}
+.book-card-back h4 {
+    margin-bottom: 8px;
+}
+.book-card-back p {
+    font-size: 12px;
+    margin: 4px 0;
+}
+.buy-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: white;
+    color: #3498db;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.buy-btn:hover {
+    transform: scale(1.05);
+    background: #2980b9;
+    color: white;
+}
+
+/* ✅ 2. 3D环形图书展示 */
+.ring-container {
+    margin: 40px 0;
+    padding: 20px;
+}
+.ring-scene {
+    width: 100%;
+    height: 300px;
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ring-carousel {
+    width: 100px;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+}
+.ring-item {
+    position: absolute;
+    width: 100px;
+    height: 180px;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    /* 环形分布：每个item旋转角度 = 360 / 数量 */
+    transform: rotateY(calc(var(--i) * 60deg)) translateZ(200px);
+    text-align: center;
+}
+.ring-item img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.ring-item:hover img {
+    transform: translateZ(20px) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+.ring-item p {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #333;
+    transform: translateZ(1px);
+}
+
+/* 轮播图：从下向上自动切换 */
+.carousel {
+    width: 600px;   /* 轮播宽度，可自定义 */
+    height: 400px;  /* 轮播高度，可自定义 */
+    margin: 50px auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.carousel-items {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* 默认透明 */
+    animation: carouselUp 9s infinite; /* 总时长9秒（3张图，每张3秒） */
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel-item:nth-child(1) {
+    animation-delay: 0s;    
+}
+.carousel-item:nth-child(2) {
+    animation-delay: 3s;    
+}
+.carousel-item:nth-child(3) {
+    animation-delay: 6s;    
+}
+@keyframes carouselUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100%); 
+        }
+    10% {
+        opacity: 1;
+        transform: translateY(0);    
+        }
+    30% {
+        opacity: 1;
+        transform: translateY(0);    
+        }
+    40% {
+        opacity: 0;
+        transform: translateY(-100%);
+        }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+        }
+}
+.carousel:hover .carousel-item {
+    animation-play-state: paused;
+}
+
+/* ✅ 3D过渡动画增强 - 按钮/表单 */
+.login-btn, .submit-btn {
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    background-size: 200% 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transform-style: preserve-3d;
+}
+.login-btn {
+    padding: 6px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.login-btn:hover, .submit-btn:hover {
+    transform: scale(1.05) translateZ(3px); /* 3D缩放 */
+    background-position: right center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+/* 表单输入框焦点3D过渡 */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+.form-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    transform: translateY(-1px) translateZ(2px);
+}
+
+/* 图标悬停旋转 */
+#searchIcon, #cartIcon {
+    display: inline-block;
+    transition: all 0.5s ease;
+    margin-right: 4px;
+}
+#searchIcon:hover {
+    transform: rotate(360deg);
+    color: #28a745;
+}
+#cartIcon:hover {
+    transform: rotate(180deg);
+    color: #dc3545;
+}
+
+/* 登录弹窗样式 */
+.login-modal-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.login-modal {
+    position: relative;
+    width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    transform-style: preserve-3d;
+    transform: translateZ(10px);
+}
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.3s ease;
+}
+.close-modal:hover {
+    color: #333;
+    transform: rotate(90deg) scale(1.2);
+}
+.modal-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.modal-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+.modal-tab.active {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    transform: translateY(-2px);
+}
+.form-panel {
+    display: none;
+}
+.form-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.tip-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+/* ✅ 3D页脚元素 */
+.footer {
+    background: #2c3e50;
+    color: white;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+/* 社交媒体图标3D旋转 */
+.social-icons {
+    margin-bottom: 15px;
+}
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    margin: 0 8px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+}
+.social-icon:hover {
+    transform: rotateY(360deg) scale(1.1);
+    background: #3498db;
+}
+/* 版权信息淡入过渡 */
+.copyright {
+    font-size: 12px;
+    color: #ccc;
+    animation: fadeInUp 1s ease 0.5s both;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
